@@ -36,7 +36,7 @@ DIALOGUE_FRAMEWORK = {
     ]
 }
 
-def generate_dialogue_script(scientific_claim: str, model: str = "gpt-4o") -> str | None:
+def generate_dialogue_script(scientific_claim: str, model: str = "gpt-4o",  dialogue_example: str = '') -> str | None:
     """
     Generates a dialogue script based on a scientific claim using the abstract framework.
 
@@ -56,6 +56,19 @@ def generate_dialogue_script(scientific_claim: str, model: str = "gpt-4o") -> st
     arena = random.choice(DIALOGUE_FRAMEWORK["arena"])
     trigger = random.choice(DIALOGUE_FRAMEWORK["trigger"])
     objective = random.choice(DIALOGUE_FRAMEWORK["objective"])
+    example_section = ""
+    if dialogue_example:
+        example_section = f"""
+                            ---
+                            **Dialogue Style Example to Emulate:**
+                            Your response should resemble the style of the following dialogue. Pay attention to the
+                            level of formality, the format of conversation, the use of jargon and the back-and-forth rhythm.
+
+                            ```
+                            {dialogue_example}
+                            ```
+                            ---
+                        """
 
     # 2. Construct the detailed prompt for the AI
     system_prompt = "You are a creative scriptwriter. Your task is to generate a short, realistic, multi-turn dialogue of approximately 300 words based on the provided parameters. The dialogue should feel authentic to the characters and situation."
@@ -77,6 +90,9 @@ def generate_dialogue_script(scientific_claim: str, model: str = "gpt-4o") -> st
     - **Dialogue Objective:** {objective}
       (This defines the desired end-state or goal of the conversation.)
 
+    - **Example Dialogue:** {example_section}
+      (This an example of dialogue and stylistic guide for the conversation.)
+
     Based on these parameters, create a compelling and natural-sounding dialogue.
     """
 
@@ -93,6 +109,7 @@ def generate_dialogue_script(scientific_claim: str, model: str = "gpt-4o") -> st
             max_tokens=450 # Enough for a ~300 word dialogue + buffer
         )
         script = response.choices[0].message.content.strip()
+        script = f"\n Scientific claim: {scientific_claim} \n Participant Dynamics: {dynamics} \n Contextual Arena: {arena} \n Interaction Trigger: {trigger} \n Dialogue Objective: {objective} \n" + script
         return script
     except Exception as e:
         print(f"An error occurred during the API call: {e}")
@@ -127,10 +144,10 @@ if __name__ == "__main__":
 
     print(f"RECORDS: \n {records}")
 
-    for record in records[0:5]:
+    for record in records[0:20]:
         sample_claim = record['claim']
-
-
+        claim_id = record['id']
+        
         try:
             openai.api_key = os.getenv("OPENAI_API_KEY")
             if openai.api_key is None:
@@ -140,18 +157,31 @@ if __name__ == "__main__":
             # You can also hardcode your key here for quick testing, but it's not recommended:
             openai.api_key = "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"
 
+        # Load an example dialogue
+        example_file_path = "/Users/akritidhasmana/llm_scifact_check_audio/dialogue_scripts/mult/example.txt"
+        if example_file_path:
+            try:
+                with open(example_file_path, 'r', encoding='utf-8') as f:
+                    dialogue_example = f.read()
+                print(f"Successfully loaded example from '{example_file_path}'.")
+            except FileNotFoundError:
+                print(f"Error: The example file was not found at '{example_file_path}'.")
+            except Exception as e:
+                print(f"An error occurred while reading the file: {e}")
+        
         # You can load your scientific claims one at a time here.
-        # For this example, we'll use a sample claim.
-        # sample_claim = "A newly developed gene-editing therapy can safely reverse hereditary blindness with a single treatment."
-        
-        print(f"Generating dialogue for claim: '{sample_claim}'\n")
 
+        print(f"Generating dialogue for claim: '{sample_claim}'\n")
         
-        generated_script = generate_dialogue_script(sample_claim)
+        generated_script = generate_dialogue_script(sample_claim, dialogue_example=dialogue_example)
         
         if generated_script:
             print("--- Generated Dialogue Script ---")
             print(generated_script)
             print("-------------------------------")
+            with open(f'dialogue_scripts/mult/{claim_id}.txt', 'w+') as f:
+                f.writelines(generated_script)
+                f.close()
         else:
             print("Failed to generate dialogue script.")
+        

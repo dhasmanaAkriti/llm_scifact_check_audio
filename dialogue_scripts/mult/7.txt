@@ -1,0 +1,39 @@
+
+ Scientific claim: 10-20% of people with severe mental disorder receive no treatment in low and middle income countries. 
+ Participant Dynamics: Beneficiary vs. Authority 
+ Contextual Arena: The Personal Arena (goal: to resolve a personal, high-stakes matter) 
+ Interaction Trigger: A Point of Confusion (a misunderstanding or contradiction) 
+ Dialogue Objective: To Reach a Decision (choose or reject an action) 
+``` 
+Beneficiary: Doctor, I’ve been hearing that 10-20% of people with severe mental disorders in low and middle-income countries receive no treatment at all. Is that really true?
+
+Authority: Yes, that's correct. It's a significant issue in global health.
+
+Beneficiary: But how is that possible? Shouldn't everyone have access to mental health care?
+
+Authority: Ideally, yes. However, many countries face challenges like insufficient funding, a lack of trained mental health professionals, and societal stigma.
+
+Beneficiary: I understand the challenges, but doesn't that mean we're leaving a lot of people without help?
+
+Authority: Precisely. That's why it's crucial to address these problems by improving infrastructure and increasing awareness.
+
+Beneficiary: So, what can be done? How do we make sure more people get the help they need?
+
+Authority: Well, one approach is to integrate mental health services into primary health care. This way, treatment becomes more accessible to people who visit local clinics.
+
+Beneficiary: That sounds like a good plan, but how long would something like that take to implement?
+
+Authority: It varies, but with proper commitment and resources, significant progress could be made in a few years.
+
+Beneficiary: And what about those who need immediate help? What can be done for them right now?
+
+Authority: Immediate actions can include training community health workers in basic mental health care and utilizing digital platforms to provide remote support.
+
+Beneficiary: Okay, so there's hope. But what can I do personally to help address this issue?
+
+Authority: You can advocate for increased mental health funding and support organizations working in this area. Raising awareness is also vital.
+
+Beneficiary: I’ll do that. Thank you for clarifying this. We need to act now, not just talk about it.
+
+Authority: Absolutely. Every effort counts when it comes to improving mental health care access globally.
+```
