@@ -1,61 +1,62 @@
 import os
 import re
+import openai
+import json
+import random
 from openai import OpenAI
 from pydub import AudioSegment
-from pydub.generators import silence
 from pathlib import Path
 # You can use python-dotenv to securely load your API key
 # from dotenv import load_dotenv
 
 # --- 1. CONFIGURATION ---
 
-# load_dotenv()
-# client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-# OR set the key directly from environment variable
-client = OpenAI()
+try:
+    openai.api_key = os.getenv("OPENAI_API_KEY")
+    if openai.api_key is None:
+        raise ValueError("OPENAI_API_KEY environment variable not set.")
+except ValueError as e:
+    print(e)
+    # You can also hardcode your key here for quick testing, but it's not recommended:
+    openai.api_key = "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"
 
-# Define the voice for each character
-CHARACTER_VOICES = {
-    "Dr. Carter": "nova",  # Female voice
-    "Dr. Patel": "onyx"   # Male voice
-}
+client = OpenAI(api_key=openai.api_key)
 
+
+CHARACTER_VOICES = ["alloy", "ash", "ballad", "coral", "echo", "fable",
+                    "nova","onyx", "sage", "shimmer"]
 # Define the length of the pause between lines (in milliseconds)
 PAUSE_DURATION_MS = 1000  # 1 second
-OUTPUT_FILENAME = "combined_dialogue.mp3"
 
 # Dialogue script extracted and cleaned from uploaded:script_dialoge.txt
 # Note: For simplicity and reliability in a script, it's best to format the raw text
 # with clear speaker-line separators.
-DIALOGUE_SCRIPT = """
-Dr. Carter: Raj, have you seen the latest report from the WHO? It states that 10-20% of people with severe mental disorders in low and middle-income countries receive no treatment at all.
-Dr. Patel: Yes, I read it this morning. It's alarming, but I'm not entirely surprised by the numbers. The infrastructure in these regions is often lacking.
-Dr. Carter: True, but what's shocking is the magnitude. We're talking about millions of people left without any form of mental health support.
-Dr. Patel: Right, but let's dig deeper. The report says "receive no treatment." Does it account for traditional or community-based interventions that might not be classified as formal treatment?
-Dr. Carter: That's a valid point. It seems like the focus was primarily on western-style psychiatric services. But even with community-based approaches, the coverage is still patchy.
-Dr. Patel: Exactly. We need to be careful with the terminology. The absence of formal treatment doesn’t always mean the absence of care. However, it's clear that accessibility and quality are major concerns.
-Dr. Carter: So, you’re suggesting that the claim isn’t entirely comprehensive?
-Dr. Patel: Not quite. I'm suggesting that while the claim is likely accurate, it doesn't capture the full picture. We need more nuanced data that includes informal care patterns.
-Dr. Carter: I agree. So, our next step should be advocating for more inclusive research methods, perhaps?
-Dr. Patel: Definitely. And perhaps we can propose a mixed-methods study to explore both formal and informal care networks. This could expose more of the truth about mental health care gaps.
-Dr. Carter: That's a solid plan. Let’s draft a proposal for that. We need to ensure the data reflects the reality on the ground.
-Dr. Patel: Absolutely. It's time we bridge the gap between policy and practice.
-"""
 
 # --- 2. CORE FUNCTIONS ---
+def assign_voices(characters):
+    # Extract Characters 
+    # Define the voice for each character
+    char_voices_mapping = {}
+    for char in characters:
+        voice = random.choice(CHARACTER_VOICES)
+        char_voices_mapping[char] = voice
+    return char_voices_mapping
 
-def parse_dialogue(script: str) -> list[tuple[str, str]]:
+def parse_dialogue(script: list[str]) -> list[tuple[str, str]]:
     """Parses the dialogue script into a list of (character, line) tuples."""
     parsed_lines = []
     # Regex to find "Character Name:" followed by the line
-    pattern = re.compile(r"^(?P<character>[A-Za-z\s\.]+):\s*(?P<line>.*)$", re.MULTILINE)
-    
-    for match in pattern.finditer(script.strip()):
-        character = match.group("character").strip()
-        line = match.group("line").strip()
-        if character and line:
-            parsed_lines.append((character, line))
-    return parsed_lines
+    pattern = re.compile(r"^(?P<character>[\*\w\s\.]+):\s*(?P<line>.*)$", re.MULTILINE)
+    metadata = script[:7]
+    characters = []
+    for line in script[7:]:
+        for match in pattern.finditer(line.strip()):
+            character = match.group("character").strip()
+            line = match.group("line").strip()
+            if character and line:
+                characters.append(character)
+                parsed_lines.append((character, line))
+    return characters, parsed_lines
 
 def generate_audio_for_line(text: str, voice: str, output_path: Path):
     """Calls the OpenAI TTS API to generate audio and saves it to a file."""
@@ -79,7 +80,7 @@ def combine_audio_segments(audio_files: list[Path], pause_ms: int, output_file: 
     # Create an AudioSegment object for the pause
     # Use the same sample rate (24kHz) as the TTS model for compatibility
     sample_rate = 24000
-    pause_segment = silence(duration=pause_ms, sample_rate=sample_rate)
+    pause_segment = AudioSegment.silent(duration=pause_ms)
     
     # Start with an empty AudioSegment
     combined_audio = AudioSegment.empty()
@@ -101,36 +102,70 @@ def combine_audio_segments(audio_files: list[Path], pause_ms: int, output_file: 
 # --- 3. MAIN EXECUTION ---
 
 if __name__ == "__main__":
-    
-    # 1. Parse the dialogue
-    dialogue_lines = parse_dialogue(DIALOGUE_SCRIPT)
-    
-    if not dialogue_lines:
-        print("Error: Could not parse any dialogue lines from the script.")
-    else:
-        # 2. Generate audio for each line
-        generated_files = []
-        for i, (character, line) in enumerate(dialogue_lines):
-            voice = CHARACTER_VOICES.get(character)
-            if voice:
-                output_path = Path(f"temp_line_{i}_{character.replace(' ', '_')}.mp3")
-                
-                # Generate audio and get the saved file path
-                file_path = generate_audio_for_line(line, voice, output_path)
-                
-                if file_path:
-                    generated_files.append(file_path)
-            else:
-                print(f"Warning: No voice defined for character '{character}'. Skipping line.")
+    # Load the claims
+    records = []
+    filepath = '/Users/akritidhasmana/scifact-open/data/claims.jsonl'
+    try:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            for line_number, line in enumerate(f, 1):
+                # Strip whitespace, as it can interfere with JSON parsing
+                stripped_line = line.strip()
+                if not stripped_line:
+                    continue # Skip empty lines
 
-        # 3. Combine all segments
-        if generated_files:
-            combine_audio_segments(generated_files, PAUSE_DURATION_MS, OUTPUT_FILENAME)
+                try:
+                    # Parse the JSON object from the line
+                    record = json.loads(stripped_line)
+                    records.append(record)
+                except json.JSONDecodeError as e:
+                    print(f"Skipping line {line_number}: Failed to parse JSON.")
+                    print(f"Error details: {e}")
+                    # Optionally, print the problematic line: print(f"Problematic line: {stripped_line[:100]}...")
+                    continue
+
+    except Exception as e:
+        print(f"An unexpected error occurred during file processing: {e}")
+        records =  []
+
+    print(f"RECORDS: \n {records}")
+
+    for record in records[0:3]:
+        claim = record['claim']
+        claim_id = record['id']
+        with open(f"dialogue_scripts/mult/{claim_id}.txt", 'r', encoding='utf-8') as f:
+                dialogue = f.readlines()
+    
+        # 1. Parse the dialogue
+        characters, dialogue_lines = parse_dialogue(dialogue)
+        character_voices = assign_voices(characters)
+        output_filename = f"audio_files/{claim_id}.mp3"
         
-            # 4. Clean up temporary files
-            print("\nCleaning up temporary files...")
-            for f in generated_files:
-                f.unlink()
-            print("Cleanup complete.")
+        if not dialogue_lines:
+            print("Error: Could not parse any dialogue lines from the script.")
         else:
-            print("No audio files were generated to combine.")
+            # 2. Generate audio for each line
+            generated_files = []
+            for i, (character, line) in enumerate(dialogue_lines):
+                voice = character_voices.get(character)
+                if voice:
+                    output_path = Path(f"temp_line_{i}_{character.replace(' ', '_')}.mp3")
+                    
+                    # Generate audio and get the saved file path
+                    file_path = generate_audio_for_line(line, voice, output_path)
+                    
+                    if file_path:
+                        generated_files.append(file_path)
+                else:
+                    print(f"Warning: No voice defined for character '{character}'. Skipping line.")
+
+            # 3. Combine all segments
+            if generated_files:
+                combine_audio_segments(generated_files, PAUSE_DURATION_MS, output_filename)
+            
+                # 4. Clean up temporary files
+                print("\nCleaning up temporary files...")
+                for f in generated_files:
+                    f.unlink()
+                print("Cleanup complete.")
+            else:
+                print("No audio files were generated to combine.")
