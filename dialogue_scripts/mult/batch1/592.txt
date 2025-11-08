@@ -1,0 +1,33 @@
+
+ Scientific claim: Incidence of 10/66 dementia is lower than the incidence of DSM-IV dementia. 
+ Participant Dynamics: Practitioner vs. Decision-Maker 
+ Contextual Arena: The Didactic Arena (goal: to teach or learn) 
+ Interaction Trigger: An External Mandate (a new law, policy, or trend) 
+ Dialogue Objective: To Define the Disagreement (map out points of conflict) 
+```
+Practitioner: So, the new health policy mandates we prioritize 10/66 dementia diagnosis over DSM-IV criteria. Interesting shift, don’t you think?
+
+Decision-Maker: Indeed, but it seems like there’s a disagreement here. The policy implies that 10/66 is more accurate, yet our textbooks have always prioritized DSM-IV. Why this change?
+
+Practitioner: The 10/66 criteria focus on culturally relevant symptoms, which might explain why its incidence appears lower than DSM-IV dementia. It picks up on cases that might otherwise be missed.
+
+Decision-Maker: But DSM-IV has been the gold standard for decades. Are we saying it overestimates dementia cases?
+
+Practitioner: Not necessarily. It’s more about different frameworks. DSM-IV might be more sensitive to early signs, but 10/66 is designed to be more specific in diverse populations. That’s why the incidence rates differ.
+
+Decision-Maker: I see. So, how are we supposed to align our practice with this new policy? Our current resources and training are DSM-IV focused.
+
+Practitioner: That's a valid concern. Transitioning will require updated training and potentially new tools for assessment. The policy encourages collaboration with research bodies to smooth this transition.
+
+Decision-Maker: Collaboration sounds good in theory, but what about the logistical challenges? Our teams are already stretched thin.
+
+Practitioner: True, but this is where strategic planning comes in. We might start with pilot programs to gather data and adjust our approaches incrementally.
+
+Decision-Maker: It's a lot to consider. We need to ensure that this shift doesn’t compromise patient care. How do we communicate this to our practitioners?
+
+Practitioner: Clear guidelines and support systems will be crucial. We need to frame it as an enhancement to our diagnostic accuracy, not a replacement.
+
+Decision-Maker: Alright, let’s map out these points of disagreement and propose a plan. We need consensus before we proceed.
+
+Practitioner: Agreed. Let’s start by defining our current gaps and potential resources. That will provide a clearer picture moving forward.
+```

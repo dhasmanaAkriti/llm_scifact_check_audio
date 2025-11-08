@@ -1,0 +1,38 @@
+
+ Scientific claim: Obesity decreases life quality. 
+ Participant Dynamics: Peer vs. Peer 
+ Contextual Arena: The Personal Arena (goal: to resolve a personal, high-stakes matter) 
+ Interaction Trigger: A Threat (a potential risk or cost) 
+ Dialogue Objective: To Reach a Decision (choose or reject an action) 
+```
+Speaker 1: Alright, Tom, we need to talk about your health. You know, obesity decreases life quality. 
+
+Speaker 2: I know, Julia, but it’s not like I chose this. It’s been tough juggling work and everything else.
+
+Speaker 1: I get that, but it’s a threat to your well-being. It’s not just about a few extra pounds. It’s affecting your energy, your mood, and your future.
+
+Speaker 2: You think I don’t know that? Every day I feel it. But what do you want me to do? I’ve tried dieting, exercising, nothing sticks.
+
+Speaker 1: Have you considered seeing a specialist? Someone who can create a personalized plan just for you.
+
+Speaker 2: It’s embarrassing, honestly. Walking into a clinic feels like admitting defeat.
+
+Speaker 1: It’s not defeat, it’s taking control. Look, we’re peers, I’m not here to lecture you. But I care about you. I’ve seen how this is impacting your life.
+
+Speaker 2: I appreciate that, really. But it feels like a mountain to climb, and I’m not sure where to start.
+
+Speaker 1: Let’s start small. Maybe we can set up a meeting with a nutritionist together. I’ll be there for support.
+
+Speaker 2: You’d do that?
+
+Speaker 1: Of course. I want to see you happy and healthy, Tom. We can tackle this one step at a time.
+
+Speaker 2: Alright, let’s do it. I’ll make that call. But you might have to drag me there.
+
+Speaker 1: I’ll be your personal chauffeur. You’re not alone in this, remember that.
+
+Speaker 2: Thanks, Julia. I guess it’s time to make a change, for real this time.
+
+Speaker 1: Exactly. We’ll get through it together.
+
+```

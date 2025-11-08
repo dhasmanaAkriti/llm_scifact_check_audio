@@ -1,0 +1,31 @@
+
+ Scientific claim: Sepsis related mortality has risen from 2009 to 2014. 
+ Participant Dynamics: Practitioner vs. Decision-Maker 
+ Contextual Arena: The Deliberative Arena (goal: to make a strategic choice) 
+ Interaction Trigger: A Threat (a potential risk or cost) 
+ Dialogue Objective: To Define the Disagreement (map out points of conflict) 
+```
+Practitioner: We need to address the alarming rise in sepsis-related mortality from 2009 to 2014. It's a significant threat to patient safety.
+
+Decision-Maker: I'm aware of the statistics, but what's the underlying cause? Are we facing a failure in early detection, or is it more about the treatment protocols?
+
+Practitioner: It's a bit of both. Early detection is crucial, and our current protocols aren't as effective as they could be. The inconsistency in applying sepsis screening tools is a major factor.
+
+Decision-Maker: So, you're suggesting we overhaul our entire protocol? That's a costly endeavor and not something we can commit to without concrete evidence of its necessity.
+
+Practitioner: I understand the concern about cost. However, the evidence is clear—hospitals with robust sepsis protocols have seen a decline in mortality rates. It's about long-term savings and patient outcomes.
+
+Decision-Maker: But is it truly a protocol issue, or are we dealing with a broader systemic problem? Staffing shortages and resource limitations could also contribute to these statistics.
+
+Practitioner: Certainly, those are valid points. However, even with limited resources, implementing a few targeted changes in our protocol could significantly reduce the mortality rate.
+
+Decision-Maker: What about the risk of over-diagnosing? We've had issues with unnecessary treatments in the past, leading to other complications.
+
+Practitioner: Over-diagnosing is a risk, admittedly. But with improved training and clearer guidelines, we can minimize that. The focus should be on balance—early detection without jumping to conclusions.
+
+Decision-Maker: I'll need more data before we can proceed. A cost-benefit analysis, perhaps? We need to ensure that any changes align with our budget and strategic goals.
+
+Practitioner: Agreed. I'll compile a detailed report highlighting potential improvements and their projected impact. I believe with the right adjustments, we can tackle this issue effectively.
+
+Decision-Maker: Let's reconvene once we have all the data. It's crucial we make a decision that benefits both our patients and our institution's future.
+```

@@ -1,0 +1,34 @@
+
+ Scientific claim: Antiretroviral therapy increases rates of tuberculosis across a broad range of CD4 strata. 
+ Participant Dynamics: Advocate vs. Skeptic 
+ Contextual Arena: The Exploratory Arena (goal: to brainstorm and understand) 
+ Interaction Trigger: An External Mandate (a new law, policy, or trend) 
+ Dialogue Objective: To Reach a Decision (choose or reject an action) 
+``` 
+**Advocate (Dr. Laura):** With the new health policy pressing for more widespread antiretroviral therapy, there's a growing concern about its impact on tuberculosis rates. The claim that antiretroviral therapy increases TB across various CD4 strata is something we need to address.
+
+**Skeptic (Dr. Mike):** I understand the worry, Laura, but isn't the primary goal of antiretroviral therapy to manage HIV effectively? How certain are we about this TB increase?
+
+**Dr. Laura:** The data shows a pattern, Mike. Patients across different CD4 levels seem to have higher TB rates once they start the therapy. It's not definitive, but it's consistent enough to warrant attention.
+
+**Dr. Mike:** But are we sure it's the therapy causing this? Could it be other factors, like improved immune function revealing latent TB?
+
+**Dr. Laura:** That's one hypothesis. The immune reconstitution can indeed unmask latent infections. However, if the therapy is linked, even indirectly, to increased TB, our approach might need adjusting.
+
+**Dr. Mike:** So, what are you proposing? We can't just halt the therapy. The benefits for HIV control are substantial.
+
+**Dr. Laura:** Absolutely, stopping isn't viable. But we could consider integrated screening and prevention strategies for TB as part of the treatment protocol.
+
+**Dr. Mike:** That sounds reasonable. But how do we balance this without overwhelming the healthcare system?
+
+**Dr. Laura:** By piloting the integration in high-risk areas first. Evaluate outcomes and resource demands, then scale up based on evidence.
+
+**Dr. Mike:** It seems like a sensible approach. We need to ensure we're not trading one health crisis for another.
+
+**Dr. Laura:** Agreed. So, are we on board with proposing this integrated strategy to the policy committee?
+
+**Dr. Mike:** Yes, let's do it. It's critical to address both HIV and TB effectively. We owe it to our patients to be proactive.
+
+**Dr. Laura:** Excellent. I'll draft our proposal and circulate it for feedback. Let's make sure our actions are grounded in both care and caution.
+
+```
