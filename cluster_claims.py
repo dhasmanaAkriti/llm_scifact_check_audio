@@ -31,7 +31,7 @@ with open('claims_train.jsonl', 'r') as file:
 
 # Create a new list called 'clean_data'
 # We only keep an item if 'evidence' is NOT empty (meaning it has valid proof)
-clean_data = [item for item in data if item.get('evidence')]
+clean_data = [item for item in data if not item.get('evidence').empty()]
 
 # Turn this list into a pandas DataFrame (like an Excel sheet in code)
 df = pd.DataFrame(clean_data)
