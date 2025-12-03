@@ -31,7 +31,8 @@ with open('claims_train.jsonl', 'r') as file:
 
 # Create a new list called 'clean_data'
 # We only keep an item if 'evidence' is NOT empty (meaning it has valid proof)
-clean_data = [item for item in data if not item.get('evidence').empty()]
+# Go through every item in our data list. Check if the evidence field exists and has stuff inside it. If it does, keep that item and put it into a new list called clean_data."
+clean_data = [item for item in data if item.get('evidence')]
 
 # Turn this list into a pandas DataFrame (like an Excel sheet in code)
 df = pd.DataFrame(clean_data)
@@ -61,5 +62,5 @@ df['topic_id'] = kmeans.fit_predict(embeddings)
 df.to_csv('cluster_claims.csv', index=False)
 
 # Print a success message so you know it worked
-print("Success! Open 'sorted_claims.csv' to see your grouped topics.")
+print("Success! Open 'cluster_claims.csv' to see your grouped topics.")
 
