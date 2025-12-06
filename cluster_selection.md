@@ -49,4 +49,3 @@
 - Notch signaling occurs between tumor cells and stromal cells.
 - B cells go though plasmablast differentiation and antibody production by continuous expression of EBI2.
 - Klf4 is important for proper myeloid cell differentiation.
-(venv) haotianwang@FlyingIceCastle llm_scifact_check_audio % 
